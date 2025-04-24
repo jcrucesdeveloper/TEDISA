@@ -13,7 +13,11 @@ The analyzer accepts two types of inputs:
 
 ## Output Format
 
-The analysis generates detailed reports containing:
+The analysis generates detailed reports in three available formats:
+
+- Plain text (`.txt`) - For easy reading and parsing
+- PDF (`.pdf`) - For formal documentation
+- HTML (`.html`) - For interactive visualization
 
 1. Tensor operations affecting dimensions
 2. Operation frequency statistics
@@ -24,7 +28,7 @@ The analysis generates detailed reports containing:
    - Operation identifier/context
    - Usage description
 
-Example Output:
+Example of text output format:
 
 ```txt
 Tensor A | Line  97 | op: reshape     | dim 2 -> dim 5  | use: before loading
@@ -43,38 +47,43 @@ Technical Approach:
   1. Constant Propagation: Direct analysis of operations for precise dimension tracking
   2. Symbolic Execution: Inference of dimensional changes using symbolic variables when exact values aren't available (e.g., `dim n -> dim n + 3`)
 
-This tool aims to provide insights into tensor dimension manipulation patterns in real-world NLP and Neural Network applications without requiring code execution.
-
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+This tool aims to provide insights into tensor dimension manipulation patterns in real-world applications without requiring code execution.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-
-### Installation
-
-Complete this section
-
 ## Usage
 
-Complete this section
+Basic usage of TEDISA through command line:
+
+```bash
+# Analyze a single Python file
+python tedisa.py file.py -o output_directory
+
+# Analyze a single file with specific output format (txt, pdf, or html)
+python tedisa.py file.py -o output_directory --format txt
+python tedisa.py file.py -o output_directory --format pdf
+python tedisa.py file.py -o output_directory --format html
+
+# Analyze all Python files in a directory
+python tedisa.py /path/to/directory -o output_directory
+
+# Analyze with recursive directory search
+python tedisa.py /path/to/directory -o output_directory --recursive
+```
+
+The output will be generated in the specified directory with the following structure:
 
 <!-- CONTRIBUTING -->
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 <!-- CONTACT -->
 
 ## Contact
 
 email: jcrucesdeveloper@gmail.com
-
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
