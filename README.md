@@ -51,6 +51,10 @@ This tool aims to provide insights into tensor dimension manipulation patterns i
 
 ### Prerequisites
 
+```
+under construction
+```
+
 ## Usage
 
 Basic usage of TEDISA through command line:
@@ -73,7 +77,9 @@ python tedisa.py /path/to/directory -o output_directory --recursive
 
 The output will be generated in the specified directory with the following structure:
 
-<!-- CONTRIBUTING -->
+```
+under construction
+```
 
 ## License
 
