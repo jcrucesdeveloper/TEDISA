@@ -2,7 +2,48 @@
 
 ## About The Project
 
-Here's a blank template to get started. To avoid retyping too much info, do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`, `project_license`
+TEDISA (Tensor Dimensions Static Analyzer) is a static analysis tool designed to analyze tensor dimension changes in PyTorch and NumPy programs, specifically focusing on Neural Networks applications.
+
+## Input Specifications
+
+The analyzer accepts two types of inputs:
+
+1. Direct path to a source file containing PyTorch operations
+2. Directory path for recursive analysis of Python source files (`.py` or `.ipynb`)
+
+## Output Format
+
+The analysis generates detailed reports containing:
+
+1. Tensor operations affecting dimensions
+2. Operation frequency statistics
+3. Detailed operation analysis including:
+   - Operation name
+   - Line number
+   - Initial and final dimensions
+   - Operation identifier/context
+   - Usage description
+
+Example Output:
+
+```txt
+Tensor A | Line  97 | op: reshape     | dim 2 -> dim 5  | use: before loading
+Tensor A | Line  98 | op: flatten     | dim 5 -> dim 2  | use: to next batch
+Tensor B | Line 112 | op: unsqueeze   | dim 3 -> dim 4  | use: for broadcasting
+Tensor C | Line  45 | op: permute     | dim 4 -> dim 4  | use: channel last
+```
+
+## Analysis Strategy
+
+Technical Approach:
+
+- Static analysis through Abstract Syntax Tree (AST) traversal
+- Tracking tensor declarations and their dimensional changes
+- Two-pronged analysis strategy:
+  1. Constant Propagation: Direct analysis of operations for precise dimension tracking
+  2. Symbolic Execution: Inference of dimensional changes using symbolic variables when exact values aren't available (e.g., `dim n -> dim n + 3`)
+
+This tool aims to provide insights into tensor dimension manipulation patterns in real-world NLP and Neural Network applications without requiring code execution.
 
 ## Getting Started
 
