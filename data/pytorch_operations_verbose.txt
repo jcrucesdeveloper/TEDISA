@@ -1,0 +1,17 @@
+## Creation Ops
+torch.tensor(data, *, dtype=None, device=None, requires_grad=False, pin_memory=False) → Tensor
+torch.sparse_coo_tensor(indices, values, size=None, *, dtype=None, device=None, pin_memory=False, requires_grad=False, check_invariants=None, is_coalesced=None) → Tensor
+torch.sparse_csr_tensor(crow_indices, col_indices, values, size=None, *, dtype=None, device=None, pin_memory=False, requires_grad=False, check_invariants=None) → Tensor
+torch.sparse_csc_tensor(ccol_indices, row_indices, values, size=None, *, dtype=None, device=None, pin_memory=False, requires_grad=False, check_invariants=None) → Tensor
+torch.sparse_bsr_tensor(crow_indices, col_indices, values, size=None, *, dtype=None, device=None, pin_memory=False, requires_grad=False, check_invariants=None) → Tensor
+torch.sparse_bsc_tensor(ccol_indices, row_indices, values, size=None, *, dtype=None, device=None, pin_memory=False, requires_grad=False, check_invariants=None) → Tensor
+torch.asarray(obj: Any, *, dtype: Optional[dtype], device: Optional[DeviceLikeType], copy: Optional[bool] = None, requires_grad: bool = False) → Tensor
+torch.as_tensor(data: Any, dtype: Optional[dtype] = None, device: Optional[DeviceLikeType]) → Tensor
+torch.as_strided(input, size, stride, storage_offset=None) → Tensor
+torch.from_file(filename, shared=None, size=0, *, dtype=None, layout=None, device=None, pin_memory=False)
+torch.from_numpy(ndarray) → Tensor
+torch.from_dlpack(ext_tensor) → Tensor
+torch.frombuffer(buffer, *, dtype, count=-1, offset=0, requires_grad=False) → Tensor
+torch.zeros(*size, *, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False) → Tensor
+torch.zeros_like(input, *, dtype=None, layout=None, device=None, requires_grad=False, memory_format=torch.preserve_format) → Tensor
+torch.ones(*size, *, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False) → Tensor
