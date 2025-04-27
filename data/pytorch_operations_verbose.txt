@@ -33,3 +33,23 @@ torch.complex(real, imag, *, out=None) → Tensor
 torch.polar(abs, angle, *, out=None) → Tensor
 torch.heaviside(input, values, *, out=None) → Tensor
 ## Indexing, Slicing, Joining, Mutating Ops
+torch.adjoint(input: Tensor) → Tensor
+torch.argwhere(input) → Tensor
+torch.cat(tensors, dim=0, *, out=None) → Tensor
+torch.concat(tensors, dim=0, *, out=None) → Tensor
+torch.concatenate(tensors, axis=0, out=None) → Tensor
+torch.conj(input) → Tensor
+torch.chunk(input: Tensor, chunks: int, dim: int = 0) → Tuple[Tensor, ...]
+torch.dsplit(input, indices_or_sections) → List of Tensors
+torch.column_stack(tensors, *, out=None) → Tensor
+torch.dstack(tensors, *, out=None) → Tensor
+torch.gather(input, dim, index, *, sparse_grad=False, out=None) → Tensor
+torch.hsplit(input, indices_or_sections) → List of Tensors
+torch.hstack(tensors, *, out=None) → Tensor
+torch.index_add(input: Tensor, dim: int, index: Tensor, source: Tensor, *, alpha: Union[Number, _complex] = 1, out: Optional[Tensor]) → Tensor
+torch.index_copy(input: Tensor, dim: int, index: Tensor, source: Tensor, *, out: Optional[Tensor]) → Tensor
+torch.index_reduce(input: Tensor, dim: int, index: Tensor, source: Tensor, reduce: str, *, include_self: bool = True, out: Optional[Tensor]) → Tensor
+torch.index_select(input, dim, index, *, out=None) → Tensor
+torch.masked_select(input, mask, *, out=None) → Tensor
+torch.movedim(input, source, destination) → Tensor
+torch.moveaxis(input, source, destination) → Tensor
