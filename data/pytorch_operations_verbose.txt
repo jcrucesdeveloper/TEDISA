@@ -83,4 +83,5 @@ torch.unsqueeze(input, dim) → Tensor
 torch.vsplit(input, indices_or_sections) → List of Tensors
 torch.vstack(tensors, *, out=None) → Tensor
 torch.where(condition, input, other, *, out=None) → Tensor
+### Math operations
 
