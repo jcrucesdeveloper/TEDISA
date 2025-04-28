@@ -38,3 +38,10 @@ torch.Size([10, 20, 30])
 >>> len(s)
 3
 ```
+
+### So, what does the size/shape of a Tensor means?
+
+A representation of the length of each dimension of the original vector:
+
+- If the vector has dimension one, it return an int with the length of that vector
+- If the dimension of the vector are greater than one, it returns a tuple with all teh dimensions
