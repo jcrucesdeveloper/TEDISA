@@ -1,4 +1,6 @@
-# Important definitions
+# Important PyTorch Definitions
+
+This documentation is extracted from the [PyTorch documentation](https://pytorch.org/docs/stable/).
 
 ## torch.Tensor.size
 
@@ -10,9 +12,9 @@ Returns the size of the self tensor. If dim is not specified, the returned value
 
 dim (int, optional) – The dimension for which to retrieve the size.
 
-```
-Example:
+#### Examples
 
+```python
 >>> t = torch.empty(3, 4, 5)
 >>> t.size()
 torch.Size([3, 4, 5])
@@ -23,9 +25,10 @@ torch.Size([3, 4, 5])
 ### torch.Size
 
 torch.Size is the result type of a call to torch.Tensor.size(). It describes the size of all dimensions of the original tensor. As a subclass of tuple, it supports common sequence operations like indexing and length.
-Example:
 
-```
+#### Examples
+
+```python
 >>> x = torch.ones(10, 20, 30)
 >>> s = x.size()
 >>> s
