@@ -45,3 +45,38 @@ It describes how many elements are in each dimension of the tensor:
 
 - If you ask for a specific dimension, it returns an integer with the size of that dimension.
 - If you ask for the size of the whole tensor, it returns a tuple with the size of every dimension.
+
+## torch.Tensor.dim
+
+Tensor.dim() → int
+
+Returns the number of dimensions of self tensor.
+
+#### Examples
+
+```python
+>>> # 0D tensor (scalar)
+>>> x = torch.tensor(5)
+>>> x.dim()
+0
+
+>>> # 1D tensor (vector)
+>>> x = torch.tensor([1, 2, 3])
+>>> x.dim()
+1
+
+>>> # 2D tensor (matrix)
+>>> x = torch.tensor([[1, 2], [3, 4]])
+>>> x.dim()
+2
+
+>>> # 3D tensor
+>>> x = torch.ones(2, 3, 4)
+>>> x.dim()
+3
+```
+
+### Differences between shape/size and dim of a Tensor
+
+- Shape/size: The number of elements in each dimension
+- Dim: The number of dimensions
