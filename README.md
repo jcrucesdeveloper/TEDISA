@@ -43,9 +43,6 @@ Technical Approach:
 
 - Static analysis through Abstract Syntax Tree (AST) traversal
 - Tracking tensor declarations and their dimensional changes
-- Two-pronged analysis strategy:
-  1. Constant Propagation: Direct analysis of operations for precise dimension tracking
-  2. Symbolic Execution: Inference of dimensional changes using symbolic variables when exact values aren't available (e.g., `dim n -> dim n + 3`)
 
 This tool aims to provide insights into tensor dimension manipulation patterns in real-world applications without requiring code execution.
 
