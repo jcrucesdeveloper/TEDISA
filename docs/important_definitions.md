@@ -39,9 +39,9 @@ torch.Size([10, 20, 30])
 3
 ```
 
-### So, what does the size/shape of a Tensor means?
+### So, what does the size/shape of a Tensor mean?
 
-A representation of the length of each dimension of the original vector:
+It describes how many elements are in each dimension of the tensor:
 
-- If the vector has dimension one, it return an int with the length of that vector
-- If the dimension of the vector are greater than one, it returns a tuple with all teh dimensions
+- If you ask for a specific dimension, it returns an integer with the size of that dimension.
+- If you ask for the size of the whole tensor, it returns a tuple with the size of every dimension.
