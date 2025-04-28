@@ -84,4 +84,25 @@ torch.vsplit(input, indices_or_sections) → List of Tensors
 torch.vstack(tensors, *, out=None) → Tensor
 torch.where(condition, input, other, *, out=None) → Tensor
 ### Math operations
-
+torch.abs(input: Tensor, *, out: Optional[Tensor]) → Tensor
+torch.absolute(input: Tensor, *, out: Optional[Tensor]) → Tensor
+torch.acos(input: Tensor, *, out: Optional[Tensor]) → Tensor
+torch.arccos(input: Tensor, *, out: Optional[Tensor]) → Tensor
+torch.acosh(input: Tensor, *, out: Optional[Tensor]) → Tensor
+torch.arccosh(input: Tensor, *, out: Optional[Tensor]) → Tensor
+torch.add(input, other, *, alpha=1, out=None) → Tensor
+torch.addcdiv(input, tensor1, tensor2, *, value=1, out=None) → Tensor
+torch.addcmul(input, tensor1, tensor2, *, value=1, out=None) → Tensor
+torch.angle(input: Tensor, *, out: Optional[Tensor]) → Tensor
+torch.angle(input: Tensor, *, out: Optional[Tensor]) → Tensor
+torch.asin(input: Tensor, *, out: Optional[Tensor]) → Tensor
+torch.arcsin(input: Tensor, *, out: Optional[Tensor]) → Tensor
+torch.asinh(input: Tensor, *, out: Optional[Tensor]) → Tensor
+torch.arcsinh(input: Tensor, *, out: Optional[Tensor]) → Tensor
+torch.atan(input: Tensor, *, out: Optional[Tensor]) → Tensor
+torch.arctan(input: Tensor, *, out: Optional[Tensor]) → Tensor
+torch.atanh(input: Tensor, *, out: Optional[Tensor]) → Tensor
+torch.arctanh(input: Tensor, *, out: Optional[Tensor]) → Tensor
+torch.atan2(input: Tensor, other: Tensor, *, out: Optional[Tensor]) → Tensor
+torch.arctan2(input: Tensor, other: Tensor, *, out: Optional[Tensor]) → Tensor
+torch.bitwise_not(input, *, out=None) → Tensor
