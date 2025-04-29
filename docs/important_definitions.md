@@ -55,25 +55,25 @@ Returns the number of dimensions of self tensor.
 #### Examples
 
 ```python
->>> # 0D tensor (scalar)
->>> x = torch.tensor(5)
->>> x.dim()
-0
+# 0D tensor (scalar)
+x = torch.tensor(5)
+x.dim()
+>>> 0
 
->>> # 1D tensor (vector)
->>> x = torch.tensor([1, 2, 3])
->>> x.dim()
-1
+# 1D tensor (vector)
+x = torch.tensor([1, 2, 3])
+x.dim()
+>>> 1
 
->>> # 2D tensor (matrix)
->>> x = torch.tensor([[1, 2], [3, 4]])
->>> x.dim()
-2
+# 2D tensor (matrix)
+x = torch.tensor([[1, 2], [3, 4]])
+x.dim()
+>>> 2
 
->>> # 3D tensor
->>> x = torch.ones(2, 3, 4)
->>> x.dim()
-3
+# 3D tensor
+x = torch.ones(2, 3, 4)
+x.dim()
+>>> 3
 ```
 
 ### Differences between shape/size and dim of a Tensor
