@@ -30,7 +30,8 @@ Flattens input by reshaping it into a one-dimensional tensor. The order of eleme
 
 - `input` (`Tensor`): The input tensor.
 
-```python ;; flatten :: Tensor ([x_1, x_2, ... , x_n], dim=n) -> Tensor ([x_1 * x_2 * ... * x_n, dim=1])
+```python 
+;; flatten :: Tensor ([x_1, x_2, ... , x_n], dim=n) -> Tensor ([x_1 * x_2 * ... * x_n, dim=1])
 t = torch.tensor([[[1, 2],
                    [3, 4]],
                   [[5, 6],
