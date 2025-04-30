@@ -45,6 +45,10 @@ torch.flatten(t, start_dim=1)
 ### Example 3: torch.reshape
 
 Returns a tensor with the same data and number of elements as input, but with the specified shape.
+**Parameters:**
+
+- `input` (`Tensor`): The tensor to be reshaped
+- `shape` (`tuple of int`): The new shape
 
 ```python
 ;; reshape :: Tensor ([x_1, x_2, ... , x_n], dim=n) shape([y_1, y_2, ..., y_m], dim=m) -> Tensor ([y_1, y_2, ..., y_m], dim=m)
