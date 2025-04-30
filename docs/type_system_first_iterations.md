@@ -110,7 +110,7 @@ Removes dimensions of size 1 from the tensor.
 - `dim` (`int`, optional): If given, the input will be squeezed only in this dimension.
 
 ```python
-;; squeeze :: Tensor([x_1, x_2, ..., 1, ..., x_n], dim=n) -> Tensor([x_1, x_2, ..., x_m], dim=m) where m <= n
+;; squeeze :: Tensor([x_1, x_2, ..., 1, ..., x_n], dim=n) -> Tensor([x_1, x_2, ..., x_n], dim=m) where m <= n
 x = torch.zeros(2, 1, 2, 1, 2)  # Shape (2,1,2,1,2)
 x.shape
 >>> torch.Size([2, 1, 2, 1, 2])
@@ -121,4 +121,28 @@ torch.squeeze(x).shape
 y = torch.zeros(2, 1, 2, 1, 2)
 torch.squeeze(y, dim=1).shape
 >>> torch.Size([2, 2, 1, 2])  # Only removed dimension at index 1
+```
+
+### Example 7: torch.unsqueeze
+
+Adds a dimension of size 1 at the specified position.
+
+**Parameters:**
+
+- `input` (`Tensor`): The input tensor.
+- `dim` (`int`): The index at which to insert the singleton dimension.
+
+```python
+;; unsqueeze :: Tensor([x_1, x_2, ..., x_n], dim=n) Int -> Tensor([x_1, x_2, ..., 1, ..., x_n], dim=n+1)
+x = torch.tensor([1, 2, 3, 4])  # Shape (4)
+x.shape
+>>> torch.Size([4])
+
+# Add dimension at position 0 (makes it a row vector)
+torch.unsqueeze(x, 0).shape
+>>> torch.Size([1, 4])
+
+# Add dimension at position 1 (makes it a column vector)
+torch.unsqueeze(x, 1).shape
+>>> torch.Size([4, 1])
 ```
