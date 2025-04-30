@@ -16,7 +16,7 @@ Takes a Python array as input and returns a tensor with the dimensions and shape
 
 ```python
 
-;; tensor :: List[Number] -> Tensor ([x_1, x_2, ..., x_n, dim=n])
+;; tensor :: List[Number] -> Tensor ([x_1, x_2, ..., x_n], dim=n)
 x = torch.tensor([1, 2, 3])
 x.dim() # Returns 1
 x.shape # Returns torch.Size([3])
@@ -30,8 +30,8 @@ Flattens input by reshaping it into a one-dimensional tensor. The order of eleme
 
 - `input` (`Tensor`): The input tensor.
 
-```python 
-;; flatten :: Tensor ([x_1, x_2, ... , x_n], dim=n) -> Tensor ([x_1 * x_2 * ... * x_n, dim=1])
+```python
+;; flatten :: Tensor ([x_1, x_2, ... , x_n], dim=n) -> Tensor ([x_1 * x_2 * ... * x_n], dim=1)
 t = torch.tensor([[[1, 2],
                    [3, 4]],
                   [[5, 6],
@@ -51,8 +51,7 @@ Returns a tensor with the same data and number of elements as input, but with th
 - `shape` (`tuple of int`): The new shape
 
 ```python
-;; reshape :: Tensor ([x_1, x_2, ... , x_n], dim=n) shape([y_1, y_2, ..., y_m], dim=m) -> Tensor ([y_1, y_2, ..., y_m], dim=m)
-;; Here shape is a Tuple in Python of dimension m
+;; reshape :: Tensor ([x_1, x_2, ... , x_n], dim=n) Tuple(y_1, y_2, ..., y_m) -> Tensor ([y_1, y_2, ..., y_m], dim=m)
 t = torch.tensor([[[1, 2],
                    [3, 4]],
                   [[5, 6],
@@ -69,14 +68,34 @@ torch.reshape(a, (2, 2))
 
 Returns a view of the original tensor input with its dimensions permuted.
 
-```python
+**Parameters:**
 
-;;
-;; permute :: Tensor([x_1, x_2, ..., x_n])T Tuple[int] -> Tensor([])
+- `input` (`Tensor`): The input tensor.
+- `dims` (`tuple of int`): The desired ordering of dimensions
+
+```python
+;; permute :: Tensor([x_1, x_2, ..., x_n], dim=n) Tuple(y_1, y_2, ... , y_n) -> Tensor([Tensor[y_1].shape, Tensor[y_2].shape, ... , Tensor[y_n].shape], dim=n)
 x = torch.rand(2,3,5)
 x.shape()
 >>> torch.Size([2,3,5])
 torch.permute(x, (2, 0, 1)).shape()
->>> torch.Size([5,2,3])
+>>> torch.size([5,2,3])
+```
 
+### Example 5: torch.cat
+
+Concatenates the given sequence of tensors in tensors in the given dimension. All tensors must either have the same shape (except in the concatenating dimension) or be a 1-D empty tensor with size (0,).
+**Parameters:**
+
+- `tensors` (`sequence of Tensors`): Non-empty tensors provided must have the same shape, except in the cat dimension
+- `dim` (`int`, optional): The dimension along which the tensors are concatenated
+
+
+```python
+;; cat :: List[Tensor([x_1, ..., x_n], dim=n), Tensor([y_1, ...,y_n], dim=n), ... , Tensor[n_1, n_]] Int=m -> Tensor([x_1, x_2, ..., x_m + y_m, ..., x_n], dim=n)
+;; m is the dimension where we are concadenating
+x = torch.randn(2, 3)  # Shape (2,3)
+y = torch.randn(2, 3)  # Shape (2,3)
+torch.cat((x, y), dim=0)
+>>> torch.Size([4, 3])
 ```
