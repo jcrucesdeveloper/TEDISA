@@ -85,11 +85,11 @@ torch.permute(x, (2, 0, 1)).shape()
 ### Example 5: torch.cat
 
 Concatenates the given sequence of tensors in tensors in the given dimension. All tensors must either have the same shape (except in the concatenating dimension) or be a 1-D empty tensor with size (0,).
+
 **Parameters:**
 
 - `tensors` (`sequence of Tensors`): Non-empty tensors provided must have the same shape, except in the cat dimension
 - `dim` (`int`, optional): The dimension along which the tensors are concatenated
-
 
 ```python
 ;; cat :: List[Tensor([x_1, ..., x_n], dim=n), Tensor([y_1, ...,y_n], dim=n), ... , Tensor[n_1, n_]] Int=m -> Tensor([x_1, x_2, ..., x_m + y_m, ..., x_n], dim=n)
@@ -98,4 +98,27 @@ x = torch.randn(2, 3)  # Shape (2,3)
 y = torch.randn(2, 3)  # Shape (2,3)
 torch.cat((x, y), dim=0)
 >>> torch.Size([4, 3])
+```
+
+### Example 6: torch.squeeze
+
+Removes dimensions of size 1 from the tensor.
+
+**Parameters:**
+
+- `input` (`Tensor`): The input tensor.
+- `dim` (`int`, optional): If given, the input will be squeezed only in this dimension.
+
+```python
+;; squeeze :: Tensor([x_1, x_2, ..., 1, ..., x_n], dim=n) -> Tensor([x_1, x_2, ..., x_m], dim=m) where m <= n
+x = torch.zeros(2, 1, 2, 1, 2)  # Shape (2,1,2,1,2)
+x.shape
+>>> torch.Size([2, 1, 2, 1, 2])
+torch.squeeze(x).shape
+>>> torch.Size([2, 2, 2])  # Removed all dimensions of size 1
+
+# With dim parameter
+y = torch.zeros(2, 1, 2, 1, 2)
+torch.squeeze(y, dim=1).shape
+>>> torch.Size([2, 2, 1, 2])  # Only removed dimension at index 1
 ```
