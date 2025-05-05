@@ -46,12 +46,11 @@ t.size() # torch.Size([2, 2, 2])
 
 # Dimension and Shape - after flatten
 t = torch.flatten(t)
-t.dim()
->>> 1
-t.size()
->>> torch.Size([8])
-t
->>> tensor([1,2,3,4,5,6,7,8]) # shape (8)
+t.dim() # 1
+t.size() # torch.Size([8])
+
+print(t)
+>>> tensor([1,2,3,4,5,6,7,8])
 ```
 
 ### Example 3: torch.reshape
@@ -64,13 +63,21 @@ Returns a tensor with the same data and number of elements as input, but with th
 
 ```python
 ;; reshape :: Tensor ([x_1, x_2, ... , x_n], dim=n) Tuple(y_1, y_2, ..., y_m) -> Tensor ([y_1, y_2, ..., y_m], dim=m)
-t = torch.tensor([[[1, 2],
-                   [3, 4]],
-                  [[5, 6],
-                   [7, 8]]]) # Shape (2,2,2)
 
-a = torch.zeros(4) # [0, 0, 0, 0], shape(4) dim=1
-torch.reshape(a, (2, 2))
+
+t = torch.zeros(4) # [0, 0, 0, 0], shape(4) dim=1
+
+# Dimension and Shape - before reshape
+t.dim() # 1
+t.size() # torch.Size([4])
+
+t = torch.reshape(a, (2, 2))
+
+# Dimension and Shape - after reshape
+t.dim() # 2
+t.size() # torch.Size([2, 2])
+
+print(b)
 >>> tensor([[ 0.,  0.],
 >>>         [ 0.,  0.]]) # Shape (2,2) dim=2
 
