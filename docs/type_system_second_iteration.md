@@ -17,12 +17,12 @@ Takes a Python array as input and returns a tensor with the dimensions and shape
 ```python
 
 ;; tensor :: List[Number] -> Tensor ([x_1, x_2, ..., x_n], dim=n)
-x = torch.tensor([1, 2, 3])
 
+t = torch.tensor([1, 2, 3])
 # Dimension and Shape
-x.dim()
+t.dim()
 >>> 1
-x.size()
+t.size()
 >>> torch.Size([3])
 ```
 
@@ -36,14 +36,26 @@ Flattens input by reshaping it into a one-dimensional tensor. The order of eleme
 
 ```python
 ;; flatten :: Tensor ([x_1, x_2, ... , x_n], dim=n) -> Tensor ([x_1 * x_2 * ... * x_n], dim=1)
+
 t = torch.tensor([[[1, 2],
                    [3, 4]],
                   [[5, 6],
-                   [7, 8]]]) # Shape (2,2,2)
+                   [7, 8]]])
 
-torch.flatten(t)
->>> tensor([1,2,3,4,5,6,7,8,9]) # shape (8)
-torch.flatten(t, start_dim=1)
+# Dimension and Shape - before flatten
+t.dim()
+>>> 3
+t.size()
+>>> torch.Size([2, 2, 2])
+
+# Dimension and Shape - after flatten
+t = torch.flatten(t)
+t.dim()
+>>> 1
+t.size()
+>>> torch.Size([8])
+t
+>>> tensor([1,2,3,4,5,6,7,8]) # shape (8)
 ```
 
 ### Example 3: torch.reshape
