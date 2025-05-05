@@ -94,11 +94,15 @@ Returns a view of the original tensor input with its dimensions permuted.
 
 ```python
 ;; permute :: Tensor([x_1, x_2, ..., x_n], dim=n) Tuple(y_1, y_2, ... , y_n) -> Tensor([Tensor[y_1].shape, Tensor[y_2].shape, ... , Tensor[y_n].shape], dim=n)
-x = torch.rand(2,3,5)
-x.shape()
->>> torch.Size([2,3,5])
-torch.permute(x, (2, 0, 1)).shape()
->>> torch.size([5,2,3])
+
+t = torch.rand(2,3,5)
+# Dimension and Shape - before permute
+t.dim() # 3
+t.size() # torch.Size([2,3,5])
+t = torch.permute(t, (2, 0, 1))
+# Dimension and Shape - after permute
+t.dim() # 3
+t.size() # torch.Size([5,2,3])
 ```
 
 ### Example 5: torch.cat
