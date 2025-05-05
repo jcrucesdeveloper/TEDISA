@@ -168,15 +168,20 @@ Adds a dimension of size 1 at the specified position.
 
 ```python
 ;; unsqueeze :: Tensor([x_1, x_2, ..., x_n], dim=n) Int -> Tensor([x_1, x_2, ..., 1, ..., x_n], dim=n+1)
-x = torch.tensor([1, 2, 3, 4])  # Shape (4)
-x.shape
->>> torch.Size([4])
 
-# Add dimension at position 0 (makes it a row vector)
-torch.unsqueeze(x, 0).shape
->>> torch.Size([1, 4])
+# Dimension and Shape - before unsqueeze
+t = torch.tensor([1, 2, 3, 4])  # Shape (4)
+t.dim() # 1
+t.size() # torch.Size([4])
 
-# Add dimension at position 1 (makes it a column vector)
-torch.unsqueeze(x, 1).shape
->>> torch.Size([4, 1])
+
+# Dimension and Shape - after unsqueeze (example 1)
+t1 = torch.unsqueeze(x, 0)
+t1.dim() # 2
+t1.size() # torch.Size([1, 4])
+
+# Dimension and Shape - after unsqueeze (example 2)
+t2 = torch.unsqueeze(x, 1).shape
+t2.dim() # 2
+t2.size() # torch.Size([4, 1])
 ```
