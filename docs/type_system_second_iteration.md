@@ -117,10 +117,14 @@ Concatenates the given sequence of tensors in tensors in the given dimension. Al
 ```python
 ;; cat :: List[Tensor([x_1, ..., x_n], dim=n), Tensor([y_1, ...,y_n], dim=n), ... , Tensor[n_1, n_]] Int=m -> Tensor([x_1, x_2, ..., x_m + y_m, ..., x_n], dim=n)
 ;; m is the dimension where we are concadenating
+
 x = torch.randn(2, 3)  # Shape (2,3)
 y = torch.randn(2, 3)  # Shape (2,3)
-torch.cat((x, y), dim=0)
->>> torch.Size([4, 3])
+
+# Dimension and Shape - after cat
+t = torch.cat((x, y), dim=0)
+t.dim() # 2
+t.size() # torch.Size([4, 3])
 ```
 
 ### Example 6: torch.squeeze
@@ -134,16 +138,23 @@ Removes dimensions of size 1 from the tensor.
 
 ```python
 ;; squeeze :: Tensor([x_1, x_2, ..., 1, ..., x_n], dim=n) -> Tensor([x_1, x_2, ..., x_n], dim=m) where m <= n
-x = torch.zeros(2, 1, 2, 1, 2)  # Shape (2,1,2,1,2)
-x.shape
->>> torch.Size([2, 1, 2, 1, 2])
-torch.squeeze(x).shape
->>> torch.Size([2, 2, 2])  # Removed all dimensions of size 1
+
+# Dimension and Shape - before squeeze
+t = torch.zeros(2, 1, 2, 1, 2)
+t.dim() # 5
+t.size() # torch.Size([2, 1, 2, 1, 2])
+
+# Dimension and Shape - after squeeze
+t = torch.squeeze(x)
+t.dim() # 3
+t.size() # torch.Size([2, 2, 2])  # Removed all dimensions of size 1
 
 # With dim parameter
 y = torch.zeros(2, 1, 2, 1, 2)
-torch.squeeze(y, dim=1).shape
->>> torch.Size([2, 2, 1, 2])  # Only removed dimension at index 1
+# Dimension and Shape - after squeeze (specific dimension)
+t2 = torch.squeeze(y, dim=1)
+t2.dim() # 4
+t2.size() # torch.Size([2, 2, 1, 2])  # Only removed dimension at index 1
 ```
 
 ### Example 7: torch.unsqueeze
