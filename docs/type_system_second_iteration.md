@@ -70,12 +70,13 @@ print(t)
 ### Example 3: torch.reshape
 
 Returns a tensor with the same data and number of elements as input, but with the specified shape.
+
 **Parameters:**
 
 - `input` (`Tensor`): The tensor to be reshaped
 - `shape` (`tuple of int`): The new shape
 
-** Constraints **
+**Constraints**
 
 - All other dimensions must be positive integers.
 - Only one dimension can be -1 (PyTorch will infer its value).
