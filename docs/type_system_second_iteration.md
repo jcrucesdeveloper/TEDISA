@@ -35,7 +35,6 @@ Flattens input by reshaping it into a one-dimensional tensor. The order of eleme
 ```python
 ;; flatten :: Tensor ([x_1, x_2, ... , x_n], dim=n) -> Tensor ([x_1 * x_2 * ... * x_n], dim=1)
 
-
 # Dimension and Shape - before flatten
 t = torch.tensor([[[1, 2],
                    [3, 4]],
@@ -64,16 +63,13 @@ Returns a tensor with the same data and number of elements as input, but with th
 ```python
 ;; reshape :: Tensor ([x_1, x_2, ... , x_n], dim=n) Tuple(y_1, y_2, ..., y_m) -> Tensor ([y_1, y_2, ..., y_m], dim=m)
 
-
-t = torch.zeros(4) # [0, 0, 0, 0], shape(4) dim=1
-
 # Dimension and Shape - before reshape
+t = torch.zeros(4) # [0, 0, 0, 0], shape(4) dim=1
 t.dim() # 1
 t.size() # torch.Size([4])
 
-t = torch.reshape(a, (2, 2))
-
 # Dimension and Shape - after reshape
+t = torch.reshape(a, (2, 2))
 t.dim() # 2
 t.size() # torch.Size([2, 2])
 
@@ -95,12 +91,13 @@ Returns a view of the original tensor input with its dimensions permuted.
 ```python
 ;; permute :: Tensor([x_1, x_2, ..., x_n], dim=n) Tuple(y_1, y_2, ... , y_n) -> Tensor([Tensor[y_1].shape, Tensor[y_2].shape, ... , Tensor[y_n].shape], dim=n)
 
-t = torch.rand(2,3,5)
 # Dimension and Shape - before permute
+t = torch.rand(2,3,5)
 t.dim() # 3
 t.size() # torch.Size([2,3,5])
-t = torch.permute(t, (2, 0, 1))
+
 # Dimension and Shape - after permute
+t = torch.permute(t, (2, 0, 1))
 t.dim() # 3
 t.size() # torch.Size([5,2,3])
 ```
@@ -151,6 +148,7 @@ t.size() # torch.Size([2, 2, 2])  # Removed all dimensions of size 1
 
 # With dim parameter
 y = torch.zeros(2, 1, 2, 1, 2)
+
 # Dimension and Shape - after squeeze (specific dimension)
 t2 = torch.squeeze(y, dim=1)
 t2.dim() # 4
@@ -173,7 +171,6 @@ Adds a dimension of size 1 at the specified position.
 t = torch.tensor([1, 2, 3, 4])  # Shape (4)
 t.dim() # 1
 t.size() # torch.Size([4])
-
 
 # Dimension and Shape - after unsqueeze (example 1)
 t1 = torch.unsqueeze(x, 0)
