@@ -75,8 +75,15 @@ Returns a tensor with the same data and number of elements as input, but with th
 - `input` (`Tensor`): The tensor to be reshaped
 - `shape` (`tuple of int`): The new shape
 
+** Constraints **
+
+- All other dimensions must be positive integers.
+- Only one dimension can be -1 (PyTorch will infer its value).
+- The product of the new shape's dimensions should be equal to the product of the original shape's dimensions
+
 ```python
 ;; reshape :: Tensor ([x_1, x_2, ... , x_n], dim=n) Tuple(y_1, y_2, ..., y_m) -> Tensor ([y_1, y_2, ..., y_m], dim=m)
+; constraint: y_1 * y_2 ... y_m = x_1 * x_2 * .. * x_n
 
 # Dimension and Shape - before reshape
 t = torch.zeros(4) # [0, 0, 0, 0], shape(4) dim=1
@@ -92,6 +99,11 @@ print(b)
 >>> tensor([[ 0.,  0.],
 >>>         [ 0.,  0.]]) # Shape (2,2) dim=2
 
+# Runtime Error Example - Invalid Reshape
+t = torch.zeros(4, 2)
+torch.reshape(t, (4, 3))
+>>> RuntimeError: shape '[4, 3]' is invalid for input of size 8
+# The product of new shape dimensions (4*3=12) must equal to (4*2=8)
 ```
 
 ### Example 4: torch.permute
