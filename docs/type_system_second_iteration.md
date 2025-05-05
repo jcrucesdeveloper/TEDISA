@@ -15,13 +15,28 @@ Takes a Python array as input and returns a tensor with the dimensions and shape
 - `data` (`array_like`): Initial data for the tensor. Can be a list, tuple, NumPy ndarray, scalar, and other types.
 
 ```python
+;; tensor :: List^k[Number] (shape=[d1, d2, ..., dk]) -> Tensor([d1, d2, ..., dk], dim=k)
 
-;; tensor :: List[Number] -> Tensor ([x_1, x_2, ..., x_n], dim=n)
+; k = number of nested list levels
+; [d1, d2, ..., dk] = lengths at each level of nesting
 
-# Dimension and Shape
-t = torch.tensor([1, 2, 3])
-t.dim() # 1
-t.size() # torch.Size([3])
+# Dimension and Shape - dim 1
+d1 = torch.tensor([1, 2, 3])
+d1.dim() # 1
+d1.size() # torch.Size([3])
+
+# Dimension and Shape - dim 2
+d2 = torch.tensor([[1, 2, 3], [4, 5, 6]])
+d2.dim() # 2
+d2.size() # torch.Size([2, 3])
+
+# Dimension and Shape - dim 3
+d3 = torch.tensor([
+    [[1, 2], [3, 4]],
+    [[5, 6], [7, 8]]
+])
+d3.dim() # 3
+d3.size() # torch.Size([2, 2, 2])
 ```
 
 ### Example 2: torch.flatten
