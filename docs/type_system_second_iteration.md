@@ -134,6 +134,35 @@ Returns a view of the original tensor input with its dimensions permuted.
 - `input` (`Tensor`): The input tensor.
 - `dims` (`tuple of int`): The desired ordering of dimensions
 
+**Constraints:**
+
+- Dimensions must be in range [-n, n - 1] where n is the number of dimensions
+
+```python
+# IndexError- Dimension out of range
+t = torch.rand(2,3,5)  # 3 dimensions
+torch.permute(t, (3, 0, 1))  # 3 is out of range [-3, 2]
+>>> IndexError: Dimension out of range (expected to be in range of [-3, 2], but got 3)
+```
+
+- No dimension can be repeated
+
+```python
+# Runtime Error - Repeated dimension
+t = torch.rand(2,3,5)
+torch.permute(t, (0, 0, 1))  # 0 is repeated
+>>> RuntimeError: permute(): duplicate dims are not allowed.
+```
+
+- The number of dimensions in the new shape should be equal to the original number of dimensions
+
+```python
+# Runtime Error - Invalid shape
+t = torch.rand(2,3,5)
+torch.permute(t, (0, 1))
+>>> RuntimeError: permute(sparse_coo): number of dimensions in the tensor input does not match the length of the desired ordering of dimensions i.e. input.dim() = 3 is not equal to len(dims) = 2
+```
+
 ```python
 ;; permute :: Tensor([x_1, x_2, ..., x_n], dim=n) Tuple(y_1, y_2, ... , y_n) -> Tensor([Tensor[y_1].shape, Tensor[y_2].shape, ... , Tensor[y_n].shape], dim=n)
 
