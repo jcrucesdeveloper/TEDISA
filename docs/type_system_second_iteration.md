@@ -99,7 +99,7 @@ torch.reshape(t, (-1,-1))
 - The product of the new shape's dimensions should be equal to the product of the original shape's dimensions
 
 ```python
-# Runtime Error - Multiple -1 dimensions
+# Runtime Error - Product of shapes not equals
 t = torch.zeros(4, 2)
 torch.reshape(t, (4, 3))
 # The product of new shape dimensions (4*3=12) must equal to (4*2=8)
@@ -108,7 +108,10 @@ torch.reshape(t, (4, 3))
 
 ```python
 ;; reshape :: Tensor ([x_1, x_2, ... , x_n], dim=n) Tuple(y_1, y_2, ..., y_m) -> Tensor ([y_1, y_2, ..., y_m], dim=m)
-; constraint: y_1 * y_2 ... y_m = x_1 * x_2 * .. * x_n
+; constraints:
+; ∀i ∈ [1..m]: y_i > 0 ∨ y_i = -1
+; |{i | y_i = -1}| ≤ 1
+; ∏(y_i) = ∏(x_i)
 
 # Dimension and Shape - before reshape
 t = torch.zeros(4) # [0, 0, 0, 0], shape(4) dim=1
@@ -164,7 +167,11 @@ torch.permute(t, (0, 1))
 ```
 
 ```python
-;; permute :: Tensor([x_1, x_2, ..., x_n], dim=n) Tuple(y_1, y_2, ... , y_n) -> Tensor([Tensor[y_1].shape, Tensor[y_2].shape, ... , Tensor[y_n].shape], dim=n)
+;; permute :: Tensor([x_1, x_2, ..., x_n], dim=n) Tuple(y_1, y_2, ... , y_m) -> Tensor([Tensor[y_1].shape, Tensor[y_2].shape, ... , Tensor[y_n].shape], dim=n)
+; constraints:
+; ∀i ∈ [1..m]: -n ≤ y_i < n - 1
+; ∀i,j ∈ [1..m]: i != j → y_i != y_j
+; m = n
 
 # Dimension and Shape - before permute
 t = torch.rand(2,3,5)
