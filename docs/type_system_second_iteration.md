@@ -228,3 +228,98 @@ t = torch.cat((x, y), dim=0)
 t.dim() # 2
 t.size() # torch.Size([4, 3])
 ```
+
+### Example 6: torch.squeeze
+
+Removes dimensions of size 1 from the tensor.
+
+**Parameters:**
+
+- `input` (`Tensor`): The input tensor.
+- `dim` (`int`, optional): If given, the input will be squeezed only in this dimension.
+
+**Constraints:**
+
+- If dim is specified, it must be in range [-n, n - 1] where n is the number of dimensions
+
+```python
+# IndexError - Dimension out of range
+x = torch.zeros(2, 1, 2)  # Shape (2,1,2)
+torch.squeeze(x, dim=3)  # dim 3 is out of range [-3, 2]
+>>> IndexError: Dimension out of range (expected to be in range of [-3, 2], but got 3)
+```
+
+- If dim is specified, the dimension must have size 1
+
+```python
+# RuntimeError - Dimension size not 1
+x = torch.zeros(2, 3, 2)  # Shape (2,3,2)
+torch.squeeze(x, dim=1)  # dimension 1 has size 3, not 1
+>>> RuntimeError: cannot squeeze dimension 1 as its size 3 is not 1
+```
+
+```python
+;; squeeze :: Tensor([x_1, x_2, ..., x_n], dim=n) -> Tensor([y_1, y_2, ..., y_m], dim=m)
+; where m ≤ n and y_i = x_j where x_j ≠ 1
+; constraints:
+; ∀i ∈ [1..n]: x_i = 1 ∨ x_i = y_j for some j
+
+# Dimension and Shape - before squeeze
+x = torch.zeros(2, 1, 2, 1, 2)  # Shape (2,1,2,1,2)
+x.dim() # 5
+x.size() # torch.Size([2, 1, 2, 1, 2])
+
+# Dimension and Shape - after squeeze
+x = torch.squeeze(x)
+x.dim() # 3
+x.size() # torch.Size([2, 2, 2])  # Removed all dimensions of size 1
+
+# With dim parameter
+y = torch.zeros(2, 1, 2, 1, 2)
+y = torch.squeeze(y, dim=1)
+y.dim() # 4
+y.size() # torch.Size([2, 2, 1, 2])  # Only removed dimension at index 1
+```
+
+### Example 7: torch.unsqueeze
+
+Adds a dimension of size 1 at the specified position.
+
+**Parameters:**
+
+- `input` (`Tensor`): The input tensor.
+- `dim` (`int`): The index at which to insert the singleton dimension.
+
+**Constraints:**
+
+- Dimension must be in range [-n-1, n] where n is the number of dimensions
+
+```python
+# IndexError - Dimension out of range
+x = torch.tensor([1, 2, 3, 4])  # Shape (4)
+torch.unsqueeze(x, 2)  # dim 2 is out of range [-2, 1]
+>>> IndexError: Dimension out of range (expected to be in range of [-2, 1], but got 2)
+```
+
+```python
+;; unsqueeze :: Tensor([x_1, x_2, ..., x_n], dim=n) Int -> Tensor([y_1, y_2, ..., y_{n+1}], dim=n+1)
+; where y_i = 1 if i = dim, otherwise y_i = x_j where j = i if i < dim else i-1
+; constraints:
+; -n-1 ≤ dim ≤ n
+
+# Dimension and Shape - before unsqueeze
+x = torch.tensor([1, 2, 3, 4])  # Shape (4)
+x.dim() # 1
+x.size() # torch.Size([4])
+
+# Dimension and Shape - after unsqueeze at position 0
+x = torch.unsqueeze(x, 0)
+x.dim() # 2
+x.size() # torch.Size([1, 4])  # Makes it a row vector
+
+# Dimension and Shape - after unsqueeze at position 1
+x = torch.tensor([1, 2, 3, 4])
+x = torch.unsqueeze(x, 1)
+x.dim() # 2
+x.size() # torch.Size([4, 1])  # Makes it a column vector
+```
