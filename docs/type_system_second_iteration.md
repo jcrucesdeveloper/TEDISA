@@ -1,10 +1,34 @@
 # Type System first iteration
 
-We need to capture technical requirements for implementing a type system that first captures a Tensor's dimensions and potentially its shape. This will use simple functions from the [PyTorch documentation](https://pytorch.org/docs/stable/index.html). The goal is capture the tensor's shape and dimensions in a type.
+To capture technical requirements for implementing a type system that first captures a Tensor's dimensions and potentially its shape. This will use simple functions from the [PyTorch documentation](https://pytorch.org/docs/stable/index.html). The goal is capture the tensor's shape and dimensions in a type.
 
-### First Approach to Typing Tensor Dimensions and Shapes
+## First Approach to Typing Tensor Dimensions and Shapes
 
 The following examples use PyTorch methods that create or modify tensor dimensions and shapes. This represents an initial approach to developing a type system for tracking these properties.
+
+## Type System Approach
+
+The type system tracks tensor dimensions and shapes through a formal notation:
+
+- `Tensor([d₁, d₂, ..., dₙ], dim=n)`: Represents a tensor with shape [d₁, d₂, ..., dₙ] and n dimensions
+- Functions are typed with input/output types and constraints
+- Constraints are expressed using first-order logic predicates
+
+Example:
+
+```python
+;; reshape :: Tensor([x₁, x₂, ..., xₙ], dim=n) Tuple(y₁, y₂, ..., yₘ) -> Tensor([y₁, y₂, ..., yₘ], dim=m)
+; constraints:
+; ∀i ∈ [1..m]: yᵢ > 0 ∨ yᵢ = -1
+; |{i | yᵢ = -1}| ≤ 1
+; ∏(yᵢ) = ∏(xᵢ)
+```
+
+This notation captures:
+
+1. Input/output tensor shapes and dimensions
+2. Mathematical constraints on dimensions
+3. Runtime error conditions
 
 ### Example 1: torch.tensor
 
