@@ -151,7 +151,7 @@ torch.permute(t, (3, 0, 1))  # 3 is out of range [-3, 2]
 - No dimension can be repeated
 
 ```python
-# Runtime Error - Repeated dimension
+# RuntimeError - Repeated dimension
 t = torch.rand(2,3,5)
 torch.permute(t, (0, 0, 1))  # 0 is repeated
 >>> RuntimeError: permute(): duplicate dims are not allowed.
@@ -193,74 +193,38 @@ Concatenates the given sequence of tensors in tensors in the given dimension. Al
 - `tensors` (`sequence of Tensors`): Non-empty tensors provided must have the same shape, except in the cat dimension
 - `dim` (`int`, optional): The dimension along which the tensors are concatenated
 
-```python
-;; cat :: List[Tensor([x_1, ..., x_n], dim=n), Tensor([y_1, ...,y_n], dim=n), ... , Tensor[n_1, n_]] Int=m -> Tensor([x_1, x_2, ..., x_m + y_m, ..., x_n], dim=n)
-;; m is the dimension where we are concadenating
+**Constraints:**
 
+- Dimensions must be in range [-n, n - 1] where n is the number of dimensions
+
+```python
+# IndexError - Dimension out of range
 x = torch.randn(2, 3)  # Shape (2,3)
 y = torch.randn(2, 3)  # Shape (2,3)
+torch.cat((x, y), dim=2)  # dim 2 is out of range [-2, 1]
+>>> IndexError: Dimension out of range (expected to be in range of [-2, 1], but got 2)
+```
+
+- All tensors must have the same shape except in the concatenating dimension
+
+```python
+# RuntimeError - Shapes don't match
+x = torch.randn(2, 3)  # Shape (2,3)
+y = torch.randn(2, 4)  # Shape (2,4)
+torch.cat((x, y), dim=0)
+>>> RuntimeError: Sizes of tensors must match except in dimension 0. Expected size 3 but got size 4 for tensor number 1 in the list.
+```
+
+```python
+;; cat :: (Tensor([x_1, ..., x_n], dim=n), ... , Tensor([y_1, ...,y_n], dim=n))  Int=m -> Tensor([x_1, x_2, ..., x_m + y_m, ..., x_n], dim=n)
+; constraints:
+; -n <= m < n
+; ∀t1,t2 ∈ tensors: ∀i ∈ [1..n]: i ≠ m → t1.shape[i] = t2.shape[i]
 
 # Dimension and Shape - after cat
+x = torch.randn(2, 3)  # Shape (2,3)
+y = torch.randn(2, 3)  # Shape (2,3)
 t = torch.cat((x, y), dim=0)
 t.dim() # 2
 t.size() # torch.Size([4, 3])
-```
-
-### Example 6: torch.squeeze
-
-Removes dimensions of size 1 from the tensor.
-
-**Parameters:**
-
-- `input` (`Tensor`): The input tensor.
-- `dim` (`int`, optional): If given, the input will be squeezed only in this dimension.
-
-```python
-;; squeeze :: Tensor([x_1, x_2, ..., 1, ..., x_n], dim=n) -> Tensor([x_1, x_2, ..., x_n], dim=m) where m <= n
-
-# Dimension and Shape - before squeeze
-t = torch.zeros(2, 1, 2, 1, 2)
-t.dim() # 5
-t.size() # torch.Size([2, 1, 2, 1, 2])
-
-# Dimension and Shape - after squeeze
-t = torch.squeeze(x)
-t.dim() # 3
-t.size() # torch.Size([2, 2, 2])  # Removed all dimensions of size 1
-
-# With dim parameter
-y = torch.zeros(2, 1, 2, 1, 2)
-
-# Dimension and Shape - after squeeze (specific dimension)
-t2 = torch.squeeze(y, dim=1)
-t2.dim() # 4
-t2.size() # torch.Size([2, 2, 1, 2])  # Only removed dimension at index 1
-```
-
-### Example 7: torch.unsqueeze
-
-Adds a dimension of size 1 at the specified position.
-
-**Parameters:**
-
-- `input` (`Tensor`): The input tensor.
-- `dim` (`int`): The index at which to insert the singleton dimension.
-
-```python
-;; unsqueeze :: Tensor([x_1, x_2, ..., x_n], dim=n) Int -> Tensor([x_1, x_2, ..., 1, ..., x_n], dim=n+1)
-
-# Dimension and Shape - before unsqueeze
-t = torch.tensor([1, 2, 3, 4])  # Shape (4)
-t.dim() # 1
-t.size() # torch.Size([4])
-
-# Dimension and Shape - after unsqueeze (example 1)
-t1 = torch.unsqueeze(x, 0)
-t1.dim() # 2
-t1.size() # torch.Size([1, 4])
-
-# Dimension and Shape - after unsqueeze (example 2)
-t2 = torch.unsqueeze(x, 1).shape
-t2.dim() # 2
-t2.size() # torch.Size([4, 1])
 ```
