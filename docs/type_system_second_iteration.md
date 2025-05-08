@@ -371,7 +371,8 @@ RuntimeError: The expanded size of the tensor (2) must match the existing size (
 ```
 
 ```python
-;; Tensor.expand :: Tensor([x_1, ..., x_n], dim=n) (y_1, ..., y_m) -> Tensor([y_1, ..., y_m], dim=m)
+;; Tensor t =  Tensor([x_1, ..., x_n], dim=n)
+;; t.expand ::(y_1, ..., y_m) -> Tensor([y_1, ..., y_m], dim=m)
 ; constraints:
 ; ∀i ∈ [1..n]: (x_i = 1 ∧ y_i ≥ 1)
 ; ∀i ∈ [1..n]: (x_i > 1 ∧ y_i = x_i)
@@ -391,4 +392,59 @@ print(x)
 >>> tensor([[1, 1, 1, 1],
             [2, 2, 2, 2],
             [3, 3, 3, 3]])
+```
+
+### Example 9: torch.stack
+
+Concatenates a sequence of tensors along a new dimension. All tensors must have the same shape.
+
+**Parameters:**
+
+- `tensors` (`sequence of Tensors`): Sequence of tensors to concatenate.
+- `dim` (`int`, optional): The dimension to insert. Has to be between 0 and the number of dimensions of input tensors (inclusive).
+
+**Constraints:**
+
+- All input tensors must have the same shape
+
+```python
+# RuntimeError - Shapes don't match
+x = torch.tensor([1, 2, 3])  # Shape (3)
+y = torch.tensor([4, 5])     # Shape (2)
+torch.stack((x, y))
+>>> RuntimeError: stack expects each tensor to be equal size, but got [3] at entry 0 and [2] at entry 1
+```
+
+- Dimension to insert has to be between -n and n -1
+
+```python
+# IndexError - Dimension out of range
+
+x = torch.tensor([1, 2, 3]) # Shape (3)
+y = torch.tensor([4, 5, 6]) # Shape (3)
+torch.stack((x, y), dim=2) # dim 2 is out of range [-2, 1]
+
+>>> IndexError: Dimension out of range (expected to be in range of [-2, 1], but got 2)
+```
+
+```python
+;; stack :: (Tensor([x_1, ..., x_n], dim=n), ... , Tensor([x_1, ..., x_n], dim=n)) Int=m -> Tensor([x_1, ..., x_{m-1}, k, x_m, ..., x_n], dim=n+1)
+; constraints:
+; ∀t1,t2 ∈ tensors: t1.shape = t2.shape
+; -n <= m <= n -1
+
+# Dimension and Shape - before stack
+x = torch.tensor([1, 2, 3])  # Shape (3)
+y = torch.tensor([4, 5, 6])  # Shape (3)
+z = torch.tensor([7, 8, 9])  # Shape (3)
+
+# Dimension and Shape - after stack
+t = torch.stack((x, y, z), dim=0)
+t.dim() # 2
+t.size() # torch.Size([3, 3])
+
+print(t)
+>>> tensor([[1, 4, 7],
+            [2, 5, 8],
+            [3, 6, 9]])
 ```
