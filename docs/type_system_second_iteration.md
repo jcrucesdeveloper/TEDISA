@@ -347,13 +347,12 @@ x.size() # torch.Size([4, 1])  # Makes it a column vector
 
 ### Example 8: torch.expand
 
-Returns a new view of the self tensor with singleton dimensions expanded to a larger size.
-Tensor can be also expanded to a larger number of dimensions, and the new ones will be appended at the front. For the new dimensions, the size cannot be set to -1.
-Passing -1 as the size for a dimension means not changing the size of that dimension.
+Returns a new view of the self tensor with singleton dimensions expanded to a larger size. Tensor can be also expanded to a larger number of dimensions, and the new ones will be appended at the front. For the new dimensions, the size cannot be set to -1.
 
-This function is a method of the tensor, not a torch function
+Some considerations:
 
-- `input` (`Tensor`): The input tensor.
+- Passing -1 as the size for a dimension means not changing the size of that dimension.
+- This function is a method of the tensor, not a torch function
 
 **Parameters:**
 
@@ -372,7 +371,7 @@ RuntimeError: The expanded size of the tensor (2) must match the existing size (
 ```
 
 ```python
-;; expand :: Tensor([x_1, ..., x_n], dim=n) (y_1, ..., y_m) -> Tensor([y_1, ..., y_m], dim=m)
+;; Tensor.expand :: Tensor([x_1, ..., x_n], dim=n) (y_1, ..., y_m) -> Tensor([y_1, ..., y_m], dim=m)
 ; constraints:
 ; ∀i ∈ [1..n]: (x_i = 1 ∧ y_i ≥ 1)
 ; ∀i ∈ [1..n]: (x_i > 1 ∧ y_i = x_i)
