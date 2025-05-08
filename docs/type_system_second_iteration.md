@@ -466,3 +466,51 @@ print(t)
             [2, 5, 8],
             [3, 6, 9]])
 ```
+
+### Example 10: torch.transpose
+
+Returns a tensor that is a transposed version of input. The given dimensions dim0 and dim1 are swapped.
+
+**Parameters:**
+
+- `input` (`Tensor`): The input tensor.
+- `dim0` (`int`): The first dimension to be transposed
+- `dim1` (`int`): The second dimension to be transposed
+
+**Constraints:**
+
+- Dimensions must be in range [-n, n - 1] where n is the number of dimensions
+
+```python
+# IndexError - Dimension out of range
+x = torch.randn(2, 3)  # Shape (2,3)
+torch.transpose(x, 0, 2)  # dim 2 is out of range [-2, 1]
+>>> IndexError: Dimension out of range (expected to be in range of [-2, 1], but got 2)
+```
+
+**Type Signature:**
+
+```python
+;; transpose :: Tensor([x_1, ... dim0, ..., dim1, ..., x_n], dim=n) Int=dim0 Int=dim1 -> Tensor([y_1, ...,dim1, ..., dim0, ... y_n], dim=n)
+; constraints:
+; -n ≤ dim0, dim1 < n
+; dim0 ≠ dim1 # This is allowed but nonsense
+
+# Dimension and Shape - before transpose
+x = torch.randn(2, 3, 4)  # Shape (2,3,4)
+x.dim() # 3
+x.size() # torch.Size([2, 3, 4])
+
+# Dimension and Shape - after transpose
+t = torch.transpose(x, 0, 1)
+t.dim() # 3
+t.size() # torch.Size([3, 2, 4])
+
+print(t)
+>>> tensor([[[0.1, 0.2, 0.3, 0.4],
+             [0.5, 0.6, 0.7, 0.8]],
+            [[0.9, 1.0, 1.1, 1.2],
+             [1.3, 1.4, 1.5, 1.6]],
+            [[1.7, 1.8, 1.9, 2.0],
+             [2.1, 2.2, 2.3, 2.4]]])
+```
