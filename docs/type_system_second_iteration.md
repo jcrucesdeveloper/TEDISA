@@ -38,6 +38,8 @@ Takes a Python array as input and returns a tensor with the dimensions and shape
 
 - `data` (`array_like`): Initial data for the tensor. Can be a list, tuple, NumPy ndarray, scalar, and other types.
 
+**Type Signature:**
+
 ```python
 ;; tensor :: List^k[Number] (shape=[d1, d2, ..., dk]) -> Tensor([d1, d2, ..., dk], dim=k)
 
@@ -70,6 +72,8 @@ Flattens input by reshaping it into a one-dimensional tensor. The order of eleme
 **Parameters:**
 
 - `input` (`Tensor`): The input tensor.
+
+**Type Signature:**
 
 ```python
 ;; flatten :: Tensor ([x_1, x_2, ... , x_n], dim=n) -> Tensor ([x_1 * x_2 * ... * x_n], dim=1)
@@ -129,6 +133,8 @@ torch.reshape(t, (4, 3))
 # The product of new shape dimensions (4*3=12) must equal to (4*2=8)
 >>> RuntimeError: shape '[4, 3]' is invalid for input of size 8
 ```
+
+**Type Signature:**
 
 ```python
 ;; reshape :: Tensor ([x_1, x_2, ... , x_n], dim=n) Tuple(y_1, y_2, ..., y_m) -> Tensor ([y_1, y_2, ..., y_m], dim=m)
@@ -190,6 +196,8 @@ torch.permute(t, (0, 1))
 >>> RuntimeError: permute(sparse_coo): number of dimensions in the tensor input does not match the length of the desired ordering of dimensions i.e. input.dim() = 3 is not equal to len(dims) = 2
 ```
 
+**Type Signature:**
+
 ```python
 ;; permute :: Tensor([x_1, x_2, ..., x_n], dim=n) Tuple(y_1, y_2, ... , y_m) -> Tensor([Tensor[y_1].shape, Tensor[y_2].shape, ... , Tensor[y_n].shape], dim=n)
 ; constraints:
@@ -239,6 +247,8 @@ torch.cat((x, y), dim=0)
 >>> RuntimeError: Sizes of tensors must match except in dimension 0. Expected size 3 but got size 4 for tensor number 1 in the list.
 ```
 
+**Type Signature:**
+
 ```python
 ;; cat :: (Tensor([x_1, ..., x_n], dim=n), ... , Tensor([y_1, ...,y_n], dim=n))  Int=m -> Tensor([x_1, x_2, ..., x_m + y_m, ..., x_n], dim=n)
 ; constraints:
@@ -278,6 +288,8 @@ x = torch.zeros(2, 1, 2)  # Shape (2,1,2)
 torch.squeeze(x, dim=3)  # dim 3 is out of range [-3, 2]
 >>> IndexError: Dimension out of range (expected to be in range of [-3, 2], but got 3)
 ```
+
+**Type Signature:**
 
 ```python
 ;; squeeze :: Tensor([x_1, x_2, ..., x_n], dim=n) -> Tensor([y_1, y_2, ..., y_m], dim=m)
@@ -321,6 +333,8 @@ x = torch.tensor([1, 2, 3, 4])  # Shape (4)
 torch.unsqueeze(x, 2)  # dim 2 is out of range [-2, 1]
 >>> IndexError: Dimension out of range (expected to be in range of [-2, 1], but got 2)
 ```
+
+**Type Signature:**
 
 ```python
 ;; unsqueeze :: Tensor([x_1, x_2, ..., x_n], dim=n) Int=m -> Tensor([y_1, y_2, ..., y_{n+1}], dim=n+1)
@@ -369,6 +383,8 @@ x.expand(2, 4)  # Error: dimension 0 must match input size
 RuntimeError: The expanded size of the tensor (2) must match the existing size (3) at non-singleton dimension 0.  Target sizes: [2, 4].  Tensor sizes: [3, 1]
 
 ```
+
+**Type Signature:**
 
 ```python
 ;; Tensor t =  Tensor([x_1, ..., x_n], dim=n)
@@ -426,6 +442,8 @@ torch.stack((x, y), dim=2) # dim 2 is out of range [-2, 1]
 
 >>> IndexError: Dimension out of range (expected to be in range of [-2, 1], but got 2)
 ```
+
+**Type Signature:**
 
 ```python
 ;; stack :: (Tensor([x_1, ..., x_n], dim=n), ... , Tensor([x_1, ..., x_n], dim=n)) Int=m -> Tensor([x_1, ..., x_{m-1}, k, x_m, ..., x_n], dim=n+1)
