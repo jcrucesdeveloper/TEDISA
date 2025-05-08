@@ -257,6 +257,12 @@ t.size() # torch.Size([4, 3])
 
 Removes dimensions of size 1 from the tensor.
 
+When dim is given, a squeeze operation is done only in the given dimension(s).
+Example: If input is of shape (A×1×B), then:
+
+- squeeze(input, 0) leaves the tensor unchanged
+- squeeze(input, 1) will squeeze the tensor to shape (A×B)
+
 **Parameters:**
 
 - `input` (`Tensor`): The input tensor.
@@ -271,15 +277,6 @@ Removes dimensions of size 1 from the tensor.
 x = torch.zeros(2, 1, 2)  # Shape (2,1,2)
 torch.squeeze(x, dim=3)  # dim 3 is out of range [-3, 2]
 >>> IndexError: Dimension out of range (expected to be in range of [-3, 2], but got 3)
-```
-
-- If dim is specified, the dimension must have size 1
-
-```python
-# RuntimeError - Dimension size not 1
-x = torch.zeros(2, 3, 2)  # Shape (2,3,2)
-torch.squeeze(x, dim=1)  # dimension 1 has size 3, not 1
->>> RuntimeError: cannot squeeze dimension 1 as its size 3 is not 1
 ```
 
 ```python
@@ -316,7 +313,7 @@ Adds a dimension of size 1 at the specified position.
 
 **Constraints:**
 
-- Dimension must be in range [-n-1, n] where n is the number of dimensions
+- Dimension must be in range [-n - 1, n] where n is the number of dimensions
 
 ```python
 # IndexError - Dimension out of range
@@ -326,10 +323,10 @@ torch.unsqueeze(x, 2)  # dim 2 is out of range [-2, 1]
 ```
 
 ```python
-;; unsqueeze :: Tensor([x_1, x_2, ..., x_n], dim=n) Int -> Tensor([y_1, y_2, ..., y_{n+1}], dim=n+1)
+;; unsqueeze :: Tensor([x_1, x_2, ..., x_n], dim=n) Int=m -> Tensor([y_1, y_2, ..., y_{n+1}], dim=n+1)
 ; where y_i = 1 if i = dim, otherwise y_i = x_j where j = i if i < dim else i-1
 ; constraints:
-; -n-1 ≤ dim ≤ n
+; -n-1 ≤ m ≤ n
 
 # Dimension and Shape - before unsqueeze
 x = torch.tensor([1, 2, 3, 4])  # Shape (4)
