@@ -344,3 +344,52 @@ x = torch.unsqueeze(x, 1)
 x.dim() # 2
 x.size() # torch.Size([4, 1])  # Makes it a column vector
 ```
+
+### Example 8: torch.expand
+
+Returns a new view of the self tensor with singleton dimensions expanded to a larger size.
+Tensor can be also expanded to a larger number of dimensions, and the new ones will be appended at the front. For the new dimensions, the size cannot be set to -1.
+Passing -1 as the size for a dimension means not changing the size of that dimension.
+
+This function is a method of the tensor, not a torch function
+
+- `input` (`Tensor`): The input tensor.
+
+**Parameters:**
+
+- `\*sizes` (torch.Size or int...) – the desired expanded size
+
+**Constraints:**
+
+- The number of dimensions in the expanded size must be greater than or equal to the number of dimensions in the input tensor
+
+```python
+# RuntimeError - Invalid expansion size
+x = torch.tensor([[1], [2], [3]])  # Shape (3,1)
+x.expand(2, 4)  # Error: dimension 0 must match input size
+RuntimeError: The expanded size of the tensor (2) must match the existing size (3) at non-singleton dimension 0.  Target sizes: [2, 4].  Tensor sizes: [3, 1]
+
+```
+
+```python
+;; expand :: Tensor([x_1, ..., x_n], dim=n) (y_1, ..., y_m) -> Tensor([y_1, ..., y_m], dim=m)
+; constraints:
+; ∀i ∈ [1..n]: (x_i = 1 ∧ y_i ≥ 1)
+; ∀i ∈ [1..n]: (x_i > 1 ∧ y_i = x_i)
+; ∀i ∈ [n+1..m]: y_i ≥ 1 # This one does not produce an error but returns this tensor([])
+
+# Dimension and Shape - before expand
+x = torch.tensor([[1], [2], [3]])  # Shape (3,1)
+x.dim() # 2
+x.size() # torch.Size([3, 1])
+
+# Dimension and Shape - after expand
+x = x.expand(3, 4)  # Expands singleton dimension
+x.dim() # 2
+x.size() # torch.Size([3, 4])
+
+print(x)
+>>> tensor([[1, 1, 1, 1],
+            [2, 2, 2, 2],
+            [3, 3, 3, 3]])
+```
