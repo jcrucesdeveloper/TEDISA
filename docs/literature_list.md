@@ -12,7 +12,7 @@
   inserted into the program. Another main feature is gradual typing, where
   users can improve the precision of the inference by adding appropriate
   type annotations to the program. We formalize our approach and prove
-  that it satisfies the criteria of gradual typing proposed by Siek et al. paper: https://arxiv.org/pdf/2203.08402
+  that it satisfies the criteria of gradual typing proposed by Siek et al.
 
 - [A Static Analyzer for Detecting Tensor Shape Errors in Deep Neural Network Training Code](https://sf.snu.ac.kr/publications/pytea.pdf)
 
@@ -31,8 +31,44 @@
   StackOverflow. PyTea successfully detects tensor shape errors in
   these codes, each within a few seconds.
 
-https://sf.snu.ac.kr/publications/pytea.pdf
+- [Static Analysis of Shape in TensorFlow Programs](https://drops.dagstuhl.de/storage/00lipics/lipics-vol166-ecoop2020/LIPIcs.ECOOP.2020.15/LIPIcs.ECOOP.2020.15.pdf)
 
-- https://drops.dagstuhl.de/storage/00lipics/lipics-vol166-ecoop2020/LIPIcs.ECOOP.2020.15/LIPIcs.ECOOP.2020.15.pdf
-- https://arxiv.org/pdf/1805.04058
-- https://drops.dagstuhl.de/storage/00lipics/lipics-vol166-ecoop2020/LIPIcs.ECOOP.2020.15/LIPIcs.ECOOP.2020.15.pdf
+Machine learning has been widely adopted in diverse science and engineering domains, aided by
+reusable libraries and quick development patterns. The TensorFlow library is probably the bestknown representative of this trend and most users employ the Python API to its powerful back-end.
+TensorFlow programs are susceptible to several systematic errors, especially in the dynamic typing
+setting of Python. We present Pythia, a static analysis that tracks the shapes of tensors across
+Python library calls and warns of several possible mismatches. The key technical aspects are a close
+modeling of library semantics with respect to tensor shape, and an identification of violations and
+error-prone patterns. Pythia is powerful enough to statically detect (with 84.62% precision) 11 of
+the 14 shape-related TensorFlow bugs in the recent Zhang et al. empirical study – an independent
+slice of real-world bugs
+
+- [Ariadne: Analysis for Machine Learning Programs](https://arxiv.org/pdf/1805.04058)
+
+  Machine learning has transformed domains like vision and
+  translation, and is now increasingly used in science, where
+  the correctness of such code is vital. Python is popular for
+  machine learning, in part because of its wealth of machine
+  learning libraries, and is felt to make development faster;
+  however, this dynamic language has less support for error
+  detection at code creation time than tools like Eclipse. This
+  is especially problematic for machine learning: given its statistical nature, code with subtle errors may run and produce
+  results that look plausible but are meaningless. This can
+  vitiate scientific results. We report on Ariadne: applying a
+  static framework, WALA, to machine learning code that uses
+  TensorFlow. We have created static analysis for Python, a
+  type system for tracking tensors—Tensorflow’s core data
+  structures—and a data flow analysis to track their usage. We
+  report on how it was built and present some early results
+
+- [Static Analysis of Shape in TensorFlow Programs](https://drops.dagstuhl.de/storage/00lipics/lipics-vol166-ecoop2020/LIPIcs.ECOOP.2020.15/LIPIcs.ECOOP.2020.15.pdf)
+
+  Machine learning has been widely adopted in diverse science and engineering domains, aided by
+  reusable libraries and quick development patterns. The TensorFlow library is probably the bestknown representative of this trend and most users employ the Python API to its powerful back-end.
+  TensorFlow programs are susceptible to several systematic errors, especially in the dynamic typing
+  setting of Python. We present Pythia, a static analysis that tracks the shapes of tensors across
+  Python library calls and warns of several possible mismatches. The key technical aspects are a close
+  modeling of library semantics with respect to tensor shape, and an identification of violations and
+  error-prone patterns. Pythia is powerful enough to statically detect (with 84.62% precision) 11 of
+  the 14 shape-related TensorFlow bugs in the recent Zhang et al. empirical study – an independent
+  slice of real-world bugs.
