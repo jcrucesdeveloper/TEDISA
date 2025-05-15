@@ -33,15 +33,15 @@
 
 - [Static Analysis of Shape in TensorFlow Programs](https://drops.dagstuhl.de/storage/00lipics/lipics-vol166-ecoop2020/LIPIcs.ECOOP.2020.15/LIPIcs.ECOOP.2020.15.pdf)
 
-Machine learning has been widely adopted in diverse science and engineering domains, aided by
-reusable libraries and quick development patterns. The TensorFlow library is probably the bestknown representative of this trend and most users employ the Python API to its powerful back-end.
-TensorFlow programs are susceptible to several systematic errors, especially in the dynamic typing
-setting of Python. We present Pythia, a static analysis that tracks the shapes of tensors across
-Python library calls and warns of several possible mismatches. The key technical aspects are a close
-modeling of library semantics with respect to tensor shape, and an identification of violations and
-error-prone patterns. Pythia is powerful enough to statically detect (with 84.62% precision) 11 of
-the 14 shape-related TensorFlow bugs in the recent Zhang et al. empirical study – an independent
-slice of real-world bugs
+  Machine learning has been widely adopted in diverse science and engineering domains, aided by
+  reusable libraries and quick development patterns. The TensorFlow library is probably the bestknown representative of this trend and most users employ the Python API to its powerful back-end.
+  TensorFlow programs are susceptible to several systematic errors, especially in the dynamic typing
+  setting of Python. We present Pythia, a static analysis that tracks the shapes of tensors across
+  Python library calls and warns of several possible mismatches. The key technical aspects are a close
+  modeling of library semantics with respect to tensor shape, and an identification of violations and
+  error-prone patterns. Pythia is powerful enough to statically detect (with 84.62% precision) 11 of
+  the 14 shape-related TensorFlow bugs in the recent Zhang et al. empirical study – an independent
+  slice of real-world bugs
 
 - [Ariadne: Analysis for Machine Learning Programs](https://arxiv.org/pdf/1805.04058)
 
