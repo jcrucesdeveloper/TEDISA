@@ -1,6 +1,6 @@
 ### Literature Review: Tensor Shape Mismatch Detection
 
-- [Gradual Tensor Shape Checking (full version)](https://arxiv.org/pdf/2203.08402)
+- [Gradual Tensor Shape Checking (full version)[2023]](https://arxiv.org/pdf/2203.08402)
 
   Tensor shape mismatch is a common source of bugs in deep
   learning programs. We propose a new type-based approach to detect
@@ -14,7 +14,7 @@
   type annotations to the program. We formalize our approach and prove
   that it satisfies the criteria of gradual typing proposed by Siek et al.
 
-- [A Static Analyzer for Detecting Tensor Shape Errors in Deep Neural Network Training Code](https://sf.snu.ac.kr/publications/pytea.pdf)
+- [A Static Analyzer for Detecting Tensor Shape Errors in Deep Neural Network Training Code [2021]](https://sf.snu.ac.kr/publications/pytea.pdf)
 
   We present an automatic static analyzer PyTea that detects tensorshape errors in PyTorch code. The tensor-shape error is critical in
   the deep neural net code; much of the training cost and intermediate results are to be lost once a tensor shape mismatch occurs in
@@ -31,7 +31,7 @@
   StackOverflow. PyTea successfully detects tensor shape errors in
   these codes, each within a few seconds.
 
-- [Static Analysis of Shape in TensorFlow Programs](https://drops.dagstuhl.de/storage/00lipics/lipics-vol166-ecoop2020/LIPIcs.ECOOP.2020.15/LIPIcs.ECOOP.2020.15.pdf)
+- [Static Analysis of Shape in TensorFlow Programs [2020]](https://drops.dagstuhl.de/storage/00lipics/lipics-vol166-ecoop2020/LIPIcs.ECOOP.2020.15/LIPIcs.ECOOP.2020.15.pdf)
 
   Machine learning has been widely adopted in diverse science and engineering domains, aided by
   reusable libraries and quick development patterns. The TensorFlow library is probably the bestknown representative of this trend and most users employ the Python API to its powerful back-end.
@@ -43,7 +43,7 @@
   the 14 shape-related TensorFlow bugs in the recent Zhang et al. empirical study – an independent
   slice of real-world bugs
 
-- [Ariadne: Analysis for Machine Learning Programs](https://arxiv.org/pdf/1805.04058)
+- [Ariadne: Analysis for Machine Learning Programs [2018]](https://arxiv.org/pdf/1805.04058)
 
   Machine learning has transformed domains like vision and
   translation, and is now increasingly used in science, where
