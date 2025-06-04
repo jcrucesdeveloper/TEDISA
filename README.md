@@ -2,18 +2,14 @@
 
 TEOSC (Tensor Operations Static Counter) is a static analysis tool designed to count Tensor operations inside python files.
 
-## Input Specifications
+## Usage
 
-The analyzer accepts two types of inputs:
-
-1. Direct path to a source file containing PyTorch operations
-2. Directory path for recursive analysis of Python source files (`.py` or `.ipynb`)
+```bash
+# Count Tensor operations inside file.py
+python teosc.py file.py
+```
 
 ## Output Format
-
-The analysis generates detailed reports in three available formats:
-
-- Plain text (`.txt`) - For easy reading and parsing
 
 Example of text output format:
 
@@ -23,15 +19,6 @@ Tensor operations in file "example.py":
 - flatten: 38
 - reshape: 25
 - permute: 15
-```
-
-## Usage
-
-Basic usage of TEDISA through command line:
-
-```bash
-# Count Tensor operations inside file.py
-python tedisa.py file.py
 ```
 
 ## License
