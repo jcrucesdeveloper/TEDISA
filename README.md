@@ -2,7 +2,7 @@
 
 ## About The Project
 
-TEDISA (Tensor Dimensions Static Analyzer) is a static analysis tool designed to analyze tensor dimension changes in PyTorch and NumPy programs, specifically focusing on Neural Networks applications.
+TEISC (Tensor Static Counter) is a static analysis tool designed to count Tensor operations inside python files.
 
 ## Input Specifications
 
@@ -16,40 +16,15 @@ The analyzer accepts two types of inputs:
 The analysis generates detailed reports in three available formats:
 
 - Plain text (`.txt`) - For easy reading and parsing
-- PDF (`.pdf`) - For formal documentation
-- HTML (`.html`) - For interactive visualization
-
-1. Tensor operations affecting dimensions
-2. Operation frequency statistics
-3. Detailed operation analysis including:
-   - Operation name
-   - Line number
-   - Initial and final dimensions
-   - Operation identifier/context
-   - Usage description
 
 Example of text output format:
 
 ```txt
-Tensor A | Line  97 | op: reshape     | dim 2 -> dim 5  | use: before loading
-Tensor A | Line  98 | op: flatten     | dim 5 -> dim 2  | use: to next batch
-Tensor B | Line 112 | op: unsqueeze   | dim 3 -> dim 4  | use: for broadcasting
-Tensor C | Line  45 | op: permute     | dim 4 -> dim 4  | use: channel last
-```
+Tensor operations in file "example.py":
 
-## Analysis Strategy
-
-Technical Approach:
-
-- Static analysis through Abstract Syntax Tree (AST) traversal
-- Tracking tensor declarations and their dimensional changes
-
-This tool aims to provide insights into tensor dimension manipulation patterns in real-world applications without requiring code execution.
-
-### Prerequisites
-
-```
-under construction
+- flatten: 38
+- reshape: 25
+- permute: 15
 ```
 
 ## Usage
@@ -57,25 +32,8 @@ under construction
 Basic usage of TEDISA through command line:
 
 ```bash
-# Analyze a single Python file
-python tedisa.py file.py -o output_directory
-
-# Analyze a single file with specific output format (txt, pdf, or html)
-python tedisa.py file.py -o output_directory --format txt
-python tedisa.py file.py -o output_directory --format pdf
-python tedisa.py file.py -o output_directory --format html
-
-# Analyze all Python files in a directory
-python tedisa.py /path/to/directory -o output_directory
-
-# Analyze with recursive directory search
-python tedisa.py /path/to/directory -o output_directory --recursive
-```
-
-The output will be generated in the specified directory with the following structure:
-
-```
-under construction
+# Count Tensor operations inside file.py
+python tedisa.py file.py
 ```
 
 ## License
