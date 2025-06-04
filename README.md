@@ -11,7 +11,7 @@ python teosc.py file.py
 
 ## Output Format
 
-Example of text output format:
+Example of output format:
 
 ```txt
 Tensor operations in file "example.py":
