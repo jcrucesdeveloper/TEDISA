@@ -1,8 +1,6 @@
-<!-- ABOUT THE PROJECT -->
-
 ## About The Project
 
-TEISC (Tensor Static Counter) is a static analysis tool designed to count Tensor operations inside python files.
+TEOSC (Tensor Operations Static Counter) is a static analysis tool designed to count Tensor operations inside python files.
 
 ## Input Specifications
 
