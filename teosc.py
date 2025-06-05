@@ -13,7 +13,7 @@ def main():
     
     try:
         counter.count_operations(file_path)
-        print('\n[RESULTS] Operation Summary:')
+        print(f'\n[RESULTS] Operation Summary in file {file_path}:')
         print('-' * 50)
         print(counter.get_summary())
         print('-' * 50)

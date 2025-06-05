@@ -14,11 +14,30 @@ python teosc.py file.py
 Example of output format:
 
 ```txt
-Tensor operations in file "example.py":
-
-- flatten: 38
-- reshape: 25
-- permute: 15
+[RESULTS] Operation Summary in file "example.py":
+--------------------------------------------------
+...
+andperm: 0
+normal: 0
+uniform: 0
+poisson: 0
+binomial: 0
+multinomial: 0
+multinomial_like: 0
+bernoulli: 0
+bernoulli_like: 0
+geometric: 0
+exponential: 0
+cauchy: 0
+log_normal: 0
+gamma: 0
+beta: 0
+dirichlet: 0
+student_t: 0
+pareto: 0
+weibull: 0
+von_mises: 0
+...
 ```
 
 ## License
