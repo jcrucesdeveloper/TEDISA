@@ -9,7 +9,11 @@ class OperationCounter:
         """
         Load PyTorch operations from a file
         """
-    
+        with open(file_path, 'r') as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#'):
+                    self.operations[line] = 0
 
     def count_operations(self, file_path: str) -> Dict[str, int]:
         """
