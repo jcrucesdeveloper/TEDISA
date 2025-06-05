@@ -45,9 +45,10 @@ class OperationCounter:
     
     def get_summary(self) -> str:
         """
-        Get a formatted summary of the operations
+        Get a formatted summary of the operations sorted by count in descending order
         """
         summary = "Operation Count Summary:\n"
-        for op, count in self.operations.items():
+        sorted_ops = sorted(self.operations.items(), key=lambda x: x[1], reverse=True)
+        for op, count in sorted_ops:
             summary += f"{op}: {count}\n"
         return summary 
