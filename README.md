@@ -1,44 +1,59 @@
-## About The Project
+# TEOSC - Tensor Operation Scanner
 
-TEOSC (Tensor Operations Static Counter) is a static analysis tool designed to count Tensor operations inside python files.
+A tool to count PyTorch tensor operations in Python files, Jupyter notebooks, and entire repositories.
+
+## Installation
+
+```bash
+git clone https://github.com/jcrucesdeveloper/TEISC
+python teosc.py file.py
+```
 
 ## Usage
 
+### Basic Usage
+
 ```bash
-# Count Tensor operations inside file.py
-python teosc.py file.py
+# Analyze a single Python file
+python teosc.py path/to/file.py
+
+# Analyze a Jupyter notebook
+python teosc.py path/to/notebook.ipynb
+
+# Analyze an entire directory recursively
+python teosc.py path/to/directory
+```
+
+### Save Results to File
+
+```bash
+# Save results to a file
+python teosc.py path/to/file.py -o results.txt
 ```
 
 ## Output Format
 
-Example of output format:
+The tool provides a summary of all PyTorch operations found in the analyzed files:
 
-```txt
-[RESULTS] Operation Summary in file "example.py":
---------------------------------------------------
-...
-andperm: 0
-normal: 0
-uniform: 0
-poisson: 0
-binomial: 0
-multinomial: 0
-multinomial_like: 0
-bernoulli: 0
-bernoulli_like: 0
-geometric: 0
-exponential: 0
-cauchy: 0
-log_normal: 0
-gamma: 0
-beta: 0
-dirichlet: 0
-student_t: 0
-pareto: 0
-weibull: 0
-von_mises: 0
-...
 ```
+[RESULTS] Total Operation Summary:
+--------------------------------------------------
+Files scanned (3):
+  - /path/to/file1.py
+  - /path/to/file2.py
+  - /path/to/notebook.ipynb
+--------------------------------------------------
+Operation Count Summary:
+tensor: 5
+add: 3
+matmul: 2
+...
+--------------------------------------------------
+```
+
+## Supported Operations
+
+The tool counts various PyTorch operations check data/pytorch_operations.txt
 
 ## License
 
