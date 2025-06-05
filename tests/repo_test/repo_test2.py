@@ -2,6 +2,7 @@ import torch
 
 # Create a signal
 signal = torch.tensor([1., 2., 3., 4., 5., 6., 7., 8.])
+signal2 = torch.tensor([1., 2., 3., 4., 5., 6., 7., 8.])
 print("Original signal:", signal)
 
 # Fourier Transform

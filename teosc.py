@@ -2,14 +2,18 @@ import sys
 import os
 from src.operation_counter import OperationCounter
 
+def print_summary(counter: OperationCounter) -> None:
+    """Print the total operation summary"""
+    print(f'\n[RESULTS] Total Operation Summary:')
+    print('-' * 50)
+    print(counter.get_summary())
+    print('-' * 50)
+
 def process_file(counter: OperationCounter, file_path: str) -> None:
     """Process a single Python file"""
     try:
+        print(f'[INFO] Counting Tensor Operations in File: {file_path}')
         counter.count_operations(file_path)
-        print(f'\n[RESULTS] Operation Summary in file {file_path}:')
-        print('-' * 50)
-        print(counter.get_summary())
-        print('-' * 50)
     except Exception as e:
         print(f'[ERROR] Analysis failed for {file_path}: {str(e)}')
 
@@ -39,6 +43,8 @@ def main():
         else:
             print(f'[ERROR] Path not found: {path}')
             sys.exit(1)
+            
+        print_summary(counter)
     except Exception as e:
         print(f'[ERROR] Analysis failed: {str(e)}')
         sys.exit(1)
