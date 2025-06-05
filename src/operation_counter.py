@@ -13,7 +13,10 @@ class OperationCounter:
             for line in f:
                 line = line.strip()
                 if line and not line.startswith('#'):
+                    # Store both the full name and the function name without nn.
                     self.operations[line] = 0
+                    if line.startswith('nn.'):
+                        self.operations[line[3:]] = 0
 
     def count_operations_from_string(self, content: str) -> Dict[str, int]:
         """
@@ -24,6 +27,12 @@ class OperationCounter:
         for node in ast.walk(tree):
             if isinstance(node, ast.Call):
                 if isinstance(node.func, ast.Attribute):
+                    # Handle nn.operations
+                    if isinstance(node.func.value, ast.Name) and node.func.value.id == 'nn':
+                        func_name = f"nn.{node.func.attr}"
+                        if func_name in self.operations:
+                            self.operations[func_name] += 1
+                    # Handle direct function calls
                     func_name = node.func.attr.lower()
                     if func_name in self.operations:
                         self.operations[func_name] += 1

@@ -184,7 +184,6 @@ hardtanh
 hardshrink
 softshrink
 tanhshrink
-threshold
 clamp
 clip
 ### Reduction Ops
@@ -378,4 +377,197 @@ sym_sum
 cond
 ## Optimizations
 compile
+## Convolution Layers
+nn.Conv2d
+nn.Conv1d
+nn.Conv3d
+nn.ConvTranspose1d
+nn.ConvTranspose2d
+nn.ConvTranspose3d
+nn.Unfold
+nn.Fold
+## Pooling Layers
+nn.AdaptiveAvgPool2d
+nn.MaxPool1d
+nn.MaxPool2d
+nn.MaxPool3d
+nn.MaxUnpool1d
+nn.MaxUnpool2d
+nn.MaxUnpool3d
+nn.AvgPool1d
+nn.AvgPool2d
+nn.AvgPool3d
+nn.FractionalMaxPool2d
+nn.LPPool1d
+nn.LPPool2d
+nn.AdaptiveMaxPool1d
+nn.AdaptiveMaxPool2d
+nn.AdaptiveMaxPool3d
+nn.AdaptiveAvgPool1d
+nn.AdaptiveAvgPool3d
+## Padding Layers
+nn.ReflectionPad1d
+nn.ReflectionPad2d
+nn.ReflectionPad3d
+nn.ReplicationPad1d
+nn.ReplicationPad2d
+nn.ReplicationPad3d
+nn.ZeroPad2d
+nn.ConstantPad1d
+nn.ConstantPad2d
+nn.ConstantPad3d
+## Non-linear Activations
+nn.Mish
+nn.ReLU
+nn.ReLU6
+nn.RReLU
+nn.Hardtanh
+nn.Sigmoid
+nn.Tanh
+nn.SiLU
+nn.Softplus
+nn.Softshrink
+nn.Softsign
+nn.Tanhshrink
+nn.Threshold
+nn.Softmin
+nn.Softmax
+nn.Softmax2d
+nn.LogSoftmax
+nn.AdaptiveLogSoftmaxWithLoss
+## Normalization Layers
+nn.BatchNorm2d
+nn.BatchNorm1d
+nn.BatchNorm3d
+nn.GroupNorm
+nn.SyncBatchNorm
+nn.InstanceNorm1d
+nn.InstanceNorm2d
+nn.InstanceNorm3d
+nn.LayerNorm
+nn.LocalResponseNorm
+## Recurrent Layers
+nn.RNN
+nn.LSTM
+nn.GRU
+nn.RNNCell
+nn.LSTMCell
+nn.GRUCell
+## Transformer Layers
+nn.Transformer
+nn.TransformerEncoder
+nn.TransformerDecoder
+nn.TransformerEncoderLayer
+nn.TransformerDecoderLayer
+nn.MultiheadAttention
+## Linear Layers
+nn.Linear
+nn.Identity
+nn.Bilinear
+## Dropout Layers
+nn.Dropout2d
+nn.Dropout
+nn.Dropout1d
+nn.Dropout3d
+nn.AlphaDropout
+nn.FeatureAlphaDropout
+## Sparse Layers
+nn.Embedding
+nn.EmbeddingBag
+## Distance Functions
+nn.CosineSimilarity
+nn.PairwiseDistance
+## Loss Functions
+nn.CrossEntropyLoss
+nn.MSELoss
+nn.L1Loss
+nn.SmoothL1Loss
+nn.CTCLoss
+nn.NLLLoss
+nn.PoissonNLLLoss
+nn.GaussianNLLLoss
+nn.KLDivLoss
+nn.BCELoss
+nn.BCEWithLogitsLoss
+nn.MarginRankingLoss
+nn.HingeEmbeddingLoss
+nn.MultiLabelMarginLoss
+nn.HuberLoss
+nn.SoftMarginLoss
+nn.MultiLabelSoftMarginLoss
+nn.CosineEmbeddingLoss
+nn.MultiMarginLoss
+nn.TripletMarginLoss
+nn.TripletMarginWithDistanceLoss
+## Vision Layers
+nn.PixelShuffle
+nn.PixelUnshuffle
+nn.Upsample
+nn.UpsamplingNearest2d
+nn.UpsamplingBilinear2d
+nn.UpsamplingBicubic2d
+## Shuffle Layers
+nn.ChannelShuffle
+## DataParallel Layers
+nn.DataParallel
+nn.DistributedDataParallel
+## Utilities
+nn.Flatten
+nn.Unflatten
+nn.PackedSequence
+nn.pack_padded_sequence
+nn.pad_packed_sequence
+nn.pad_sequence
+nn.pack_sequence
+nn.unpack_sequence
+nn.unpad_sequence
+## Quantized Functions
+nn.Quantize
+nn.DeQuantize
+nn.FloatFunctional
+nn.QFunctional
+## Lazy Modules
+nn.LazyLinear
+nn.LazyConv1d
+nn.LazyConv2d
+nn.LazyConv3d
+nn.LazyConvTranspose1d
+nn.LazyConvTranspose2d
+nn.LazyConvTranspose3d
+nn.LazyBatchNorm1d
+nn.LazyBatchNorm2d
+nn.LazyBatchNorm3d
+nn.LazyInstanceNorm1d
+nn.LazyInstanceNorm2d
+nn.LazyInstanceNorm3d
+## Aliases
+nn.RMSNorm
+## Initialization
+nn.init.kaiming_normal_
+nn.init.xavier_normal_
+nn.init.constant_
+## Optimizers
+nn.SGD
+nn.Adam
+nn.RMSprop
+nn.AdamW
+## Learning Rate Schedulers
+nn.StepLR
+nn.CosineAnnealingLR
+nn.ReduceLROnPlateau
+## View Operations
+view
+size
+randn
+randn_like
+tensor
+randn_like
+## Model Operations
+nn.Module
+nn.forward
+nn.apply
+## Tensor Operations
+shape
+size
+view
 
