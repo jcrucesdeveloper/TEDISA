@@ -1,5 +1,6 @@
 import sys
 import os
+import json
 import argparse
 from src.operation_counter import OperationCounter
 
@@ -23,22 +24,43 @@ def print_summary(counter: OperationCounter, scanned_files: list, output_file: s
         except Exception as e:
             print(f'[ERROR] Failed to write results to file: {str(e)}')
 
-def process_file(counter: OperationCounter, file_path: str) -> None:
-    """Process a single Python file"""
+def extract_python_from_notebook(file_path: str) -> str:
+    """Extract Python code from a Jupyter notebook"""
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            notebook = json.load(f)
+        
+        python_code = []
+        for cell in notebook['cells']:
+            if cell['cell_type'] == 'code':
+                python_code.extend(cell['source'])
+        
+        return ''.join(python_code)
+    except Exception as e:
+        raise Exception(f"Failed to parse notebook: {str(e)}")
+
+def process_file(counter: OperationCounter, file_path: str) -> bool:
+    """Process a single Python file or Jupyter notebook"""
     try:
         print(f'[INFO] Counting Tensor Operations in File: {file_path}')
-        counter.count_operations(file_path)
+        
+        if file_path.endswith('.ipynb'):
+            content = extract_python_from_notebook(file_path)
+            counter.count_operations_from_string(content)
+        else:
+            counter.count_operations(file_path)
+            
         return True
     except Exception as e:
         print(f'[ERROR] Analysis failed for {file_path}: {str(e)}')
         return False
 
 def process_directory(counter: OperationCounter, dir_path: str) -> list:
-    """Process all Python files in a directory recursively"""
+    """Process all Python files and notebooks in a directory recursively"""
     scanned_files = []
     for root, _, files in os.walk(dir_path):
         for file in files:
-            if file.endswith('.py'):
+            if file.endswith(('.py', '.ipynb')):
                 file_path = os.path.join(root, file)
                 if process_file(counter, file_path):
                     scanned_files.append(file_path)

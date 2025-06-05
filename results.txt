@@ -1,9 +1,7 @@
 [RESULTS] Total Operation Summary:
 --------------------------------------------------
-Files scanned (3):
-  - .\tests\repo_test\repo_test1.py
-  - .\tests\repo_test\repo_test2.py
-  - .\tests\repo_test\repo_test3.py
+Files scanned (1):
+  - .\tests\test_notebook.ipynb
 --------------------------------------------------
 Operation Count Summary:
 is_tensor: 0
@@ -20,7 +18,7 @@ set_default_tensor_type: 0
 numel: 0
 set_printoptions: 0
 set_flush_denormal: 0
-tensor: 7
+tensor: 5
 sparse_coo_tensor: 0
 sparse_csr_tensor: 0
 sparse_csc_tensor: 0
@@ -55,7 +53,7 @@ polar: 0
 heaviside: 0
 rand: 0
 rand_like: 0
-randn: 1
+randn: 0
 randn_like: 0
 randint: 0
 randint_like: 0
@@ -225,7 +223,7 @@ ge: 0
 le: 0
 equal: 0
 isclose: 0
-allclose: 1
+allclose: 0
 isnan: 0
 isinf: 0
 isfinite: 0
@@ -244,9 +242,9 @@ is_meta: 0
 is_mps: 0
 is_ort: 0
 is_mlc: 0
-fft: 1
-ifft: 1
-rfft: 1
+fft: 0
+ifft: 0
+rfft: 0
 irfft: 0
 hfft: 0
 ihfft: 0
@@ -264,9 +262,9 @@ hfftn: 0
 ihfftn: 0
 fftfreq: 0
 rfftfreq: 0
-fftshift: 1
+fftshift: 0
 ifftshift: 0
-stft: 1
+stft: 0
 istft: 0
 bartlett: 0
 blackman: 0
@@ -351,4 +349,4 @@ sym_min: 0
 sym_not: 0
 sym_ite: 0
 sym_sum: 0
-compile: 1
+compile: 0

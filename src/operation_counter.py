@@ -15,13 +15,10 @@ class OperationCounter:
                 if line and not line.startswith('#'):
                     self.operations[line] = 0
 
-    def count_operations(self, file_path: str) -> Dict[str, int]:
+    def count_operations_from_string(self, content: str) -> Dict[str, int]:
         """
-        Count operations in a Python file
+        Count operations from a string containing Python code
         """
-        with open(file_path, 'r', encoding='utf-8') as f:
-            content = f.read()
-        
         tree = ast.parse(content)
         
         for node in ast.walk(tree):
@@ -36,6 +33,15 @@ class OperationCounter:
                         self.operations[func_name] += 1
         
         return self.operations
+
+    def count_operations(self, file_path: str) -> Dict[str, int]:
+        """
+        Count operations in a Python file
+        """
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        return self.count_operations_from_string(content)
     
     def get_summary(self) -> str:
         """
