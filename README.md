@@ -1,11 +1,11 @@
-# TEOSC - Tensor Operation Scanner
+# TEOSC - Tensor Operations Static Counter
 
 A tool to count PyTorch tensor operations in Python files, Jupyter notebooks, and entire repositories.
 
 ## Installation
 
 ```bash
-git clone https://github.com/jcrucesdeveloper/TEISC
+git clone https://github.com/jcrucesdeveloper/TEOSC
 python teosc.py file.py
 ```
 
